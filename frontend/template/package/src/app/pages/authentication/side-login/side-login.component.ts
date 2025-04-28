@@ -21,6 +21,7 @@ import {PermissionService} from "../services/PermissionService";
 
   ],
   templateUrl: './side-login.component.html',
+  styleUrl: './side-login.component.scss',
   providers: [
     SocialAuthService,
     {
