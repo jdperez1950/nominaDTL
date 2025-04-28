@@ -1,0 +1,397 @@
+// Archivo de estilos SCSS generado automáticamente
+
+@use "@angular/material" as mat;
+@include mat.core();
+@import './variables';
+
+@import "themecolors/default_theme";
+@import "variables";
+@import "helpers/color";
+@import "helpers/icon-size";
+
+//Theme colors
+
+@import "themecolors/default_theme";
+@include mat.all-component-themes($orangetheme);
+
+//container layout
+@import "overrides/materialoverrides";
+@import "container";
+@import "layouts/layouts";
+@import "grid/grid";
+@import "helpers/custom-flex";
+@import "helpers/index";
+
+
+:root {
+  --colorPrimario: #{$colorPrimario};
+  --colorError:  #{$color-error};
+}
+
+/* Contenedor principal con márgenes y ancho máximo para los modales de crear y actualizar*/
+.page-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Sección de bienvenida con gradiente y efectos visuales */
+.welcome-section {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(to right,
+    darken($colorPrimario, 10%),
+    $colorPrimario,
+    lighten($colorPrimario, 10%));
+  color: $colorTextoEncabezado;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal con tipografía destacada */
+.welcome-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Subtítulo con ancho máximo para mejor legibilidad */
+.welcome-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto 0.5rem;
+}
+
+//-------ESTILOS PARA COMPONENTES LEER---------------------
+
+.table-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.table-header mat-form-field {
+  height: 36px;
+  margin: 0;
+}
+
+.table-header button {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.table-header button mat-icon {
+  margin-right: 8px;
+}
+
+@media (max-width: 1087px) {
+  .table-header button {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+  }
+
+  .table-header button mat-icon {
+    margin-right: 0;
+  }
+
+  .table-header button span {
+    display: none;
+  }
+}
+
+.table-container {
+  padding: 16px;
+}
+
+.mat-elevation-z8 {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.mat-mdc-cell {
+  padding: 16px;
+}
+
+.crud-actions button {
+  margin-left: 5px;
+}
+.mat-elevation-z8 {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mat-header-row {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.mat-cell, .mat-header-cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.mat-row:hover {
+  background-color: #f9f9f9;
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+// -------------MODALES DE ACTUALIZAR Y CREAR--------------
+/* Contenedor general con padding usado en modales de actualizar y crear */
+.container {
+  padding: 20px;
+}
+
+/* Overlay de carga con fondo semitransparente */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto informativo en el overlay de carga */
+.loading-overlay p {
+  margin-top: 1rem;
+}
+// -------------PANEL DE GESTION DE LAS ENTIDADES----------
+/* Tarjeta contenedora para las tablas de información */
+.entities-card {
+  margin-top: 2rem;
+  border-radius: $border-radius;
+  overflow: hidden;
+}
+
+/* Estilos base para las tablas de información */
+.entities-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Bordes redondeados para la primera columna del encabezado */
+.entities-table th:first-child {
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+/* Bordes redondeados para la última columna del encabezado */
+.entities-table th:last-child {
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+}
+
+/* Estilos para los encabezados de tabla */
+.entities-table th {
+  background-color: $colorPrimario;
+  color: $colorTextoEncabezado;
+  font-weight: 500;
+  padding: 1rem;
+  text-align: left;
+  border: none;
+  margin: 0;
+}
+
+/* Estilos para las celdas de tabla */
+.entities-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos para los títulos de sección */
+.section-title {
+  color: $colorTextos;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Contenedor de botones de acción CRUD */
+.crud-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Estilos con enfoque mobile-first para el formulario */
+
+// Reset para el contenedor principal
+.page-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+// Ajustes para sección de bienvenida
+.welcome-section {
+  border-radius: 0 !important; // Quitar bordes redondeados en móvil
+  margin: 0 !important;
+  padding: 1rem 0.75rem !important;
+  background: $colorPrimario !important; // Color sólido en lugar de gradiente para móvil
+}
+
+// Ajuste de tamaño de texto para el título
+.welcome-title {
+  font-size: 1.5rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 0.25rem 0 !important;
+  font-weight: 500 !important;
+  word-break: break-word !important;
+}
+
+// Ajuste de tamaño para el subtítulo
+.welcome-subtitle {
+  font-size: 0.85rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  word-break: break-word !important;
+}
+
+// Ajustes para tarjetas
+mat-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+mat-card-content {
+  padding: 0.75rem !important;
+}
+
+// Ajustes para campos de formulario
+.mat-form-field {
+  width: 100% !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+// Ajuste para etiquetas de formulario
+::ng-deep .mat-form-field-label {
+  font-size: 0.9rem !important;
+}
+
+// Ajuste para los inputs
+::ng-deep .mat-input-element {
+  font-size: 0.9rem !important;
+}
+
+// Asegurar que los mensajes de error sean visibles pero no demasiado grandes
+::ng-deep .mat-error {
+  font-size: 0.75rem !important;
+}
+
+// Ajustes para los botones
+.button-container {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0.75rem !important;
+  gap: 0.5rem !important;
+}
+
+.button-container button {
+  width: 100% !important;
+  min-height: 44px !important; // Altura mínima para una buena experiencia táctil
+  font-size: 0.9rem !important;
+}
+
+// Restauración de estilos para pantallas más grandes
+@media (min-width: 576px) {
+  .page-container {
+    padding: 1rem !important;
+  }
+
+  .welcome-section {
+    border-radius: 4px !important;
+    margin-bottom: 1rem !important;
+    padding: 1.5rem !important;
+    background: linear-gradient(to right,
+      darken($colorPrimario, 10%),
+      $colorPrimario,
+      lighten($colorPrimario, 10%)) !important;
+  }
+
+  .welcome-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem !important;
+  }
+
+  mat-card {
+    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .button-container {
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+  }
+
+  .button-container button {
+    width: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding: 2rem !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+  }
+
+  .welcome-section {
+    padding: 2rem !important;
+  }
+
+  .welcome-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .welcome-subtitle {
+    font-size: 1.2rem !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+  }
+
+  mat-card-content {
+    padding: 1.5rem !important;
+  }
+}
+
+.boton-crud{
+  background-color: green !important;
+  color: blue !important;
+}
+
+.boton-crud-cancel{
+  background-color: red !important;
+  color: blue !important;
+}

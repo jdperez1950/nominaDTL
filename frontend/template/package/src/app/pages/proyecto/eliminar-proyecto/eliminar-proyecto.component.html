@@ -1,0 +1,109 @@
+<!-- Componente de eliminación de Proyecto -->
+<div class="page-container">
+  <!-- Sección de título -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Eliminar Proyecto</h1>
+      <p class="welcome-subtitle">Interfaz para eliminar registros de Proyecto</p>
+      <p class="welcome-subtitle">Esta interfaz permite visualizar y eliminar registros existentes. Por favor, tenga en cuenta que esta acción es irreversible.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabla de registros -->
+  <mat-table [dataSource]="proyectos" matSort>
+    <!-- Columna ID -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna estado -->
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.estado}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna persona -->
+    <ng-container matColumnDef="persona">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Persona</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.persona.nombre}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna alcanceContractual -->
+    <ng-container matColumnDef="alcanceContractual">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>AlcanceContractual</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.alcanceContractual}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna numeroContrato -->
+    <ng-container matColumnDef="numeroContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>NumeroContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.numeroContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna tiempoContractual -->
+    <ng-container matColumnDef="tiempoContractual">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TiempoContractual</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.tiempoContractual}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna nombre -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna fechaFin -->
+    <ng-container matColumnDef="fechaFin">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FechaFin</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fechaFin}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna valorContrato -->
+    <ng-container matColumnDef="valorContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ValorContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.valorContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna cliente -->
+    <ng-container matColumnDef="cliente">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.cliente}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna objetoContractual -->
+    <ng-container matColumnDef="objetoContractual">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjetoContractual</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.objetoContractual}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna creador -->
+    <ng-container matColumnDef="creador">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Creador</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.creador}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna fechaInicio -->
+    <ng-container matColumnDef="fechaInicio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FechaInicio</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fechaInicio}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" (click)="onDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+</div>

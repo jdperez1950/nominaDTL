@@ -1,0 +1,97 @@
+<!-- Componente de eliminación de Documento -->
+<div class="page-container">
+  <!-- Sección de título -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Eliminar Documento</h1>
+      <p class="welcome-subtitle">Interfaz para eliminar registros de Documento</p>
+      <p class="welcome-subtitle">Esta interfaz permite visualizar y eliminar registros existentes. Por favor, tenga en cuenta que esta acción es irreversible.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabla de registros -->
+  <mat-table [dataSource]="documentos" matSort>
+    <!-- Columna ID -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna descripcion -->
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.descripcion}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna etiqueta -->
+    <ng-container matColumnDef="etiqueta">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Etiqueta</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.etiqueta}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna fechaCarga -->
+    <ng-container matColumnDef="fechaCarga">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FechaCarga</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fechaCarga}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna estado -->
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.estado}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna rutaArchivo -->
+    <ng-container matColumnDef="archivo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>archivo</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.archivo}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna creador -->
+    <ng-container matColumnDef="creador">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Creador</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.creador}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna persona -->
+    <ng-container matColumnDef="persona">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Persona</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.persona}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna formato -->
+    <ng-container matColumnDef="formato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Formato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.formato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna contrato -->
+    <ng-container matColumnDef="contrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Contrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.contrato.nombre}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna nombre -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombre}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" (click)="onDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+</div>

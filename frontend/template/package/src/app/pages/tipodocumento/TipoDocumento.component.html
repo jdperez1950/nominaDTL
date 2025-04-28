@@ -1,0 +1,78 @@
+<!-- Contenedor principal con layout responsive -->
+<div class="page-container">
+  <!-- Sección de bienvenida con información general de la entidad -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Gestión de TipoDocumento</h1>
+      <p class="welcome-subtitle">Panel de Control para la Entidad TipoDocumento</p>
+      <p class="welcome-subtitle">Esta interfaz proporciona una vista detallada de la entidad TipoDocumento, mostrando sus atributos y relaciones. Utilice los botones de acción para realizar operaciones de gestión sobre los registros.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra los atributos de la entidad en formato tabla -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Atributos de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con los atributos de la entidad -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Nombre del Atributo</th>
+            <th>Tipo de Dato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fila de atributo: id -->
+          <tr>
+            <td>id</td>
+            <td>long</td>
+          </tr>
+          <!-- Fila de atributo: nombreTipoDocumento -->
+          <tr>
+            <td>nombreTipoDocumento</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: creador -->
+          <tr>
+            <td>creador</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: persona -->
+          <tr>
+            <td>persona</td>
+            <td>Lista de Personas</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra las relaciones de la entidad -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Relaciones de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con las relaciones entre entidades -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Entidad Relacionada</th>
+            <th>Tipo de Relación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Relación con: Persona -->
+          <tr>
+            <td>Persona</td>
+            <td>One-to-Many</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <!-- Sección de acciones CRUD -->
+  <mat-card-actions class="crud-actions">
+    <button mat-raised-button color="accent" routerLink="./leer">
+      <mat-icon>list</mat-icon> Gestionar TipoDocumentos
+    </button>
+  </mat-card-actions>
+</div>

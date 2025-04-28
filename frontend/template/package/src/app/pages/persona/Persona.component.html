@@ -1,0 +1,148 @@
+<!-- Contenedor principal con layout responsive -->
+<div class="page-container">
+  <!-- Sección de bienvenida con información general de la entidad -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Gestión de Persona</h1>
+      <p class="welcome-subtitle">Panel de Control para la Entidad Persona</p>
+      <p class="welcome-subtitle">Esta interfaz proporciona una vista detallada de la entidad Persona, mostrando sus atributos y relaciones. Utilice los botones de acción para realizar operaciones de gestión sobre los registros.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra los atributos de la entidad en formato tabla -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Atributos de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con los atributos de la entidad -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Nombre del Atributo</th>
+            <th>Tipo de Dato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fila de atributo: id -->
+          <tr>
+            <td>id</td>
+            <td>long</td>
+          </tr>
+          <!-- Fila de atributo: nombre -->
+          <tr>
+            <td>nombre</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: correo -->
+          <tr>
+            <td>correo</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: numeroDocumento -->
+          <tr>
+            <td>numeroDocumento</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: tituloProfesional -->
+          <tr>
+            <td>tituloProfesional</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: direccion -->
+          <tr>
+            <td>direccion</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: telefono -->
+          <tr>
+            <td>telefono</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: fechaExpedicion -->
+          <tr>
+            <td>fechaExpedicion</td>
+            <td>LocalDate</td>
+          </tr>
+          <!-- Fila de atributo: fechaNacimiento -->
+          <tr>
+            <td>fechaNacimiento</td>
+            <td>LocalDate</td>
+          </tr>
+          <!-- Fila de atributo: nacionalidad -->
+          <tr>
+            <td>nacionalidad</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: creador -->
+          <tr>
+            <td>creador</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: proyecto -->
+          <tr>
+            <td>proyecto</td>
+            <td>Lista de Proyectos</td>
+          </tr>
+          <!-- Fila de atributo: contrato -->
+          <tr>
+            <td>contrato</td>
+            <td>Lista de Contratos</td>
+          </tr>
+          <!-- Fila de atributo: documento -->
+          <tr>
+            <td>documento</td>
+            <td>Lista de Documentos</td>
+          </tr>
+          <!-- Fila de atributo: tipoDocumento -->
+          <tr>
+            <td>tipoDocumento</td>
+            <td>TipoDocumento</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra las relaciones de la entidad -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Relaciones de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con las relaciones entre entidades -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Entidad Relacionada</th>
+            <th>Tipo de Relación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Relación con: Proyecto -->
+          <tr>
+            <td>Proyecto</td>
+            <td>Many-to-One</td>
+          </tr>
+          <!-- Relación con: Contrato -->
+          <tr>
+            <td>Contrato</td>
+            <td>One-to-Many</td>
+          </tr>
+          <!-- Relación con: Documento -->
+          <tr>
+            <td>Documento</td>
+            <td>One-to-Many</td>
+          </tr>
+          <!-- Relación con: TipoDocumento -->
+          <tr>
+            <td>TipoDocumento</td>
+            <td>Many-to-One</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <!-- Sección de acciones CRUD -->
+  <mat-card-actions class="crud-actions">
+    <button mat-raised-button color="accent" routerLink="./leer">
+      <mat-icon>list</mat-icon> Gestionar Personas
+    </button>
+  </mat-card-actions>
+</div>

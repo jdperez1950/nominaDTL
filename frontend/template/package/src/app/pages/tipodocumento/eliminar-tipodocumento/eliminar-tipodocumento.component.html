@@ -1,0 +1,49 @@
+<!-- Componente de eliminación de TipoDocumento -->
+<div class="page-container">
+  <!-- Sección de título -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Eliminar TipoDocumento</h1>
+      <p class="welcome-subtitle">Interfaz para eliminar registros de TipoDocumento</p>
+      <p class="welcome-subtitle">Esta interfaz permite visualizar y eliminar registros existentes. Por favor, tenga en cuenta que esta acción es irreversible.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabla de registros -->
+  <mat-table [dataSource]="tipodocumentos" matSort>
+    <!-- Columna ID -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna creador -->
+    <ng-container matColumnDef="creador">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Creador</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.creador}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna nombreTipoDocumento -->
+    <ng-container matColumnDef="nombreTipoDocumento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>NombreTipoDocumento</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nombreTipoDocumento}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" (click)="onDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+</div>

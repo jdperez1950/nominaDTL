@@ -1,0 +1,178 @@
+<!-- Contenedor principal con layout responsive -->
+<div class="page-container">
+  <!-- Sección de bienvenida con información general de la entidad -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Gestión de Contrato</h1>
+      <p class="welcome-subtitle">Panel de Control para la Entidad Contrato</p>
+      <p class="welcome-subtitle">Esta interfaz proporciona una vista detallada de la entidad Contrato, mostrando sus atributos y relaciones. Utilice los botones de acción para realizar operaciones de gestión sobre los registros.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra los atributos de la entidad en formato tabla -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Atributos de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con los atributos de la entidad -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Nombre del Atributo</th>
+            <th>Tipo de Dato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fila de atributo: id -->
+          <tr>
+            <td>id</td>
+            <td>long</td>
+          </tr>
+          <!-- Fila de atributo: numeroContrato -->
+          <tr>
+            <td>numeroContrato</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: cargo -->
+          <tr>
+            <td>cargo</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: valorTotalContrato -->
+          <tr>
+            <td>valorTotalContrato</td>
+            <td>long</td>
+          </tr>
+          <!-- Fila de atributo: numeroPagos -->
+          <tr>
+            <td>numeroPagos</td>
+            <td>int</td>
+          </tr>
+          <!-- Fila de atributo: fechaInicioContrato -->
+          <tr>
+            <td>fechaInicioContrato</td>
+            <td>LocalDate</td>
+          </tr>
+          <!-- Fila de atributo: fechaFinContrato -->
+          <tr>
+            <td>fechaFinContrato</td>
+            <td>LocalDate</td>
+          </tr>
+          <!-- Fila de atributo: estado -->
+          <tr>
+            <td>estado</td>
+            <td>boolean</td>
+          </tr>
+          <!-- Fila de atributo: contratoPdf -->
+          <tr>
+            <td>contratoPdf</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: firmado -->
+          <tr>
+            <td>firmado</td>
+            <td>boolean</td>
+          </tr>
+          <!-- Fila de atributo: creador -->
+          <tr>
+            <td>creador</td>
+            <td>String</td>
+          </tr>
+          <!-- Fila de atributo: proyecto -->
+          <tr>
+            <td>proyecto</td>
+            <td>Proyecto</td>
+          </tr>
+          <!-- Fila de atributo: persona -->
+          <tr>
+            <td>persona</td>
+            <td>Persona</td>
+          </tr>
+          <!-- Fila de atributo: documento -->
+          <tr>
+            <td>documento</td>
+            <td>Lista de Documentos</td>
+          </tr>
+          <!-- Fila de atributo: cuentaCobro -->
+          <tr>
+            <td>cuentaCobro</td>
+            <td>Lista de CuentaCobros</td>
+          </tr>
+          <!-- Fila de atributo: tipoContrato -->
+          <tr>
+            <td>tipoContrato</td>
+            <td>TipoContrato</td>
+          </tr>
+          <!-- Fila de atributo: periodicidadPago -->
+          <tr>
+            <td>periodicidadPago</td>
+            <td>PeriodicidadPago</td>
+          </tr>
+          <!-- Fila de atributo: informe -->
+          <tr>
+            <td>informe</td>
+            <td>Lista de Informes</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tarjeta que muestra las relaciones de la entidad -->
+  <mat-card class="entities-card">
+    <h2 class="section-title">Relaciones de la Entidad</h2>
+    <mat-card-content>
+      <!-- Tabla responsiva con las relaciones entre entidades -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Entidad Relacionada</th>
+            <th>Tipo de Relación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Relación con: Proyecto -->
+          <tr>
+            <td>Proyecto</td>
+            <td>Many-to-One</td>
+          </tr>
+          <!-- Relación con: Persona -->
+          <tr>
+            <td>Persona</td>
+            <td>Many-to-One</td>
+          </tr>
+          <!-- Relación con: Documento -->
+          <tr>
+            <td>Documento</td>
+            <td>One-to-Many</td>
+          </tr>
+          <!-- Relación con: CuentaCobro -->
+          <tr>
+            <td>CuentaCobro</td>
+            <td>One-to-Many</td>
+          </tr>
+          <!-- Relación con: TipoContrato -->
+          <tr>
+            <td>TipoContrato</td>
+            <td>Many-to-One</td>
+          </tr>
+          <!-- Relación con: PeriodicidadPago -->
+          <tr>
+            <td>PeriodicidadPago</td>
+            <td>Many-to-One</td>
+          </tr>
+          <!-- Relación con: Informe -->
+          <tr>
+            <td>Informe</td>
+            <td>One-to-Many</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <!-- Sección de acciones CRUD -->
+  <mat-card-actions class="crud-actions">
+    <button mat-raised-button color="accent" routerLink="./leer">
+      <mat-icon>list</mat-icon> Gestionar Contratos
+    </button>
+  </mat-card-actions>
+</div>

@@ -1,0 +1,92 @@
+<div class="page-container">
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Consultar Informe</h1>
+      <p class="welcome-subtitle">Interfaz para gestionar Informe</p>
+      <p class="welcome-subtitle">Esta interfaz permite crear, visualizar, actualizar, eliminar, buscar, filtrar y exportar los registros existentes.       Utilice las opciones de la tabla y los botones para gestionar la información.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput #filterInput (keyup.enter)="applyFilter(filterInput.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="applyFilter(filterInput.value)">
+      <mat-icon>search</mat-icon> <span>Buscar </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon> <span>Exportar a Excel </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="onCreate()">
+      <mat-icon>add</mat-icon> <span>Crear Informe
+    </span></button>
+  </div>
+
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let element">{{element.fecha}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+        <td mat-cell *matCellDef="let element">{{element.cliente}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cargo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cargo</th>
+        <td mat-cell *matCellDef="let element">{{element.cargo}}</td>
+      </ng-container>
+      <ng-container matColumnDef="informePDF">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Informe PDF</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowInformePDF(element)" matTooltip="Ver archivos de InformePDF">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="creador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
+        <td mat-cell *matCellDef="let element">{{ obtenerNombreCreador(element.creador) }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cuentaCobro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuenta Cobro</th>
+        <td mat-cell *matCellDef="let element">{{element.cuentaCobro.id + "," + element.cuentaCobro.numeroCuenta || 'Sin cuentaCobro'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="proyecto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</th>
+        <td mat-cell *matCellDef="let element">{{element.proyecto?.nombre || 'Sin proyecto'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="contrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.contrato?.numeroContrato || 'Sin contrato'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="accent" (click)="onDownload(element)" matTooltip="Descargar Archivos">
+            <mat-icon>file_download</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="onEdit(element)" matTooltip="Modificar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="table-footer">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+  </mat-card-content>
+</div>

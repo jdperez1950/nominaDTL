@@ -1,0 +1,147 @@
+<div class="page-container">
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Consultar Contrato</h1>
+      <p class="welcome-subtitle">Interfaz para gestionar Contrato</p>
+      <p class="welcome-subtitle">Esta interfaz permite crear, visualizar, actualizar, eliminar, buscar, filtrar y exportar los registros existentes.       Utilice las opciones de la tabla y los botones para gestionar la información.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput #filterInput (keyup.enter)="applyFilter(filterInput.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="applyFilter(filterInput.value)">
+      <mat-icon>search</mat-icon> <span>Buscar </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon> <span>Exportar a Excel </span>
+    </button>
+    <button *ngIf="mostrarBotonCrear" mat-raised-button color="accent" (click)="onCreate()">
+      <mat-icon>add</mat-icon> <span>Crear Contrato
+    </span></button>
+  </div>
+
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="numeroContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero de Contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.numeroContrato}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cargo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cargo</th>
+        <td mat-cell *matCellDef="let element">{{element.cargo}}</td>
+      </ng-container>
+      <ng-container matColumnDef="valorTotalContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor Total Contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.valorTotalContrato  | currency:'COP':'symbol':'1.0-0':'es-CO' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="numeroPagos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero Pagos</th>
+        <td mat-cell *matCellDef="let element">{{element.numeroPagos}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fechaInicioContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Inicio Contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaInicioContrato}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fechaFinContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Fin Contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaFinContrato}}</td>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td mat-cell *matCellDef="let element">
+    <span [ngClass]="{'status-approved': element.estado, 'status-rejected': !element.estado}">
+      {{ element.estado ? 'En curso' : 'Finalizado' }}
+    </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="contratoPdf">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contrato PDF</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowContratoPdf(element)" matTooltip="Ver Contrato PDF">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="firmado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Firmado </th>
+        <td mat-cell *matCellDef="let element">
+    <span [ngClass]="{'status-approved': element.firmado, 'status-rejected': !element.firmado}">
+      {{ element.firmado ? 'Aprobado' : 'Pendiente' }}
+    </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="creador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
+        <td mat-cell *matCellDef="let element">{{ obtenerNombreCreador(element.creador) }}</td>
+      </ng-container>
+      <ng-container matColumnDef="proyecto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</th>
+        <td mat-cell *matCellDef="let element">{{generateSummary(element.proyecto) || 'Sin proyecto'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="persona">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Persona</th>
+        <td mat-cell *matCellDef="let element">{{generateSummary(element.persona) || 'Sin persona'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Documento</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.documento)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="cuentaCobro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cuenta Cobro</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.cuentaCobro)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tipoContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo Contrato</th>
+        <td mat-cell *matCellDef="let element">{{generateSummary(element.tipoContrato) || 'Sin tipoContrato'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="periodicidadPago">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Periodicidad Pago</th>
+        <td mat-cell *matCellDef="let element">{{generateSummary(element.periodicidadPago) || 'Sin periodicidadPago'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="observaciones">
+        <th mat-header-cell *matHeaderCellDef> Observaciones </th>
+        <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+      </ng-container>
+      <ng-container matColumnDef="archivosAdicionales">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Archivos Adicionales</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowArchivosAdicionales(element)" matTooltip="Ver Archivos Adicionales">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="informe">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Informe</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.informe)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="accent" (click)="onDownload(element)" matTooltip="Descargar Archivos">
+            <mat-icon>file_download</mat-icon>
+          </button>
+          <button *ngIf="mostrarBotonModificar" mat-icon-button color="primary" (click)="onEdit(element)" matTooltip="Modificar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button *ngIf="mostrarBotonEliminar" mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="table-footer">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+  </mat-card-content>
+</div>

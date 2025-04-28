@@ -1,0 +1,137 @@
+<!-- Contenedor principal de la página -->
+<div class="page-container">
+  <!-- Sección de bienvenida con información general -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Bienvenido a My App</h1>
+      <p class="welcome-subtitle">Sistema de Gestión de Entidades</p>
+      <p class="welcome-subtitle">Aquí puedes gestionar las entidades que se generaron automáticamente a partir de la información suministrada en el archivo .xlsm</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Sección de listado de entidades disponibles -->
+  <h2 class="section-title">Entidades Disponibles</h2>
+  <mat-card class="entities-card">
+    <mat-card-content>
+      <!-- Tabla de entidades con acciones -->
+      <table class="entities-table">
+        <thead>
+          <tr>
+            <th>Nombre de la Entidad</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fila para la entidad: Contrato -->
+          <tr>
+            <td>Contrato</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/contrato/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: CuentaCobro -->
+          <tr>
+            <td>CuentaCobro</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/cuentacobro/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: Documento -->
+          <tr>
+            <td>Documento</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/documento/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: Informe -->
+          <tr>
+            <td>Informe</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/informe/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: PeriodicidadPago -->
+          <tr>
+            <td>PeriodicidadPago</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/periodicidadpago/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: Persona -->
+          <tr>
+            <td>Persona</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/persona/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: Proyecto -->
+          <tr>
+            <td>Proyecto</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/proyecto/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: TipoContrato -->
+          <tr>
+            <td>TipoContrato</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/tipocontrato/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <!-- Fila para la entidad: TipoDocumento -->
+          <tr>
+            <td>TipoDocumento</td>
+            <td class="text-center">
+              <div class="action-button">
+                <!-- Botón de navegación a la vista de gestión de la entidad -->
+                <a routerLink="/tipodocumento/leer" mat-mini-fab color="accent" matTooltip="Gestionar">
+                  <mat-icon>list</mat-icon>
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

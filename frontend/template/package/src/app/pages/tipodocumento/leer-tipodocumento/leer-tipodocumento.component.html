@@ -1,0 +1,66 @@
+<div class="page-container">
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Consultar TipoDocumento</h1>
+      <p class="welcome-subtitle">Interfaz para gestionar TipoDocumento</p>
+      <p class="welcome-subtitle">Esta interfaz permite crear, visualizar, actualizar, eliminar, buscar, filtrar y exportar los registros existentes.       Utilice las opciones de la tabla y los botones para gestionar la información.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput #filterInput (keyup.enter)="applyFilter(filterInput.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="applyFilter(filterInput.value)">
+      <mat-icon>search</mat-icon> <span>Buscar </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon> <span>Exportar a Excel </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="onCreate()">
+      <mat-icon>add</mat-icon> <span>Crear TipoDocumento
+    </span></button>
+  </div>
+
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="nombreTipoDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Tipo Documento</th>
+        <td mat-cell *matCellDef="let element">{{element.nombreTipoDocumento}}</td>
+      </ng-container>
+      <ng-container matColumnDef="creador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
+        <td mat-cell *matCellDef="let element">{{ obtenerNombreCreador(element.creador) }}</td>
+      </ng-container>
+      <ng-container matColumnDef="persona">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Persona</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.persona)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="onEdit(element)" matTooltip="Modificar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="table-footer">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+  </mat-card-content>
+</div>

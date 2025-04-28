@@ -1,0 +1,25 @@
+<!-- traditional-login.component.html -->
+<form [formGroup]="form" (ngSubmit)="submit()" class="m-t-30">
+  <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Nombre de usuario</mat-label>
+  <mat-form-field appearance="outline" class="w-100" color="primary">
+    <input matInput formControlName="uname" placeholder="Ingresa tu nombre de usuario" />
+    <mat-error *ngIf="f['uname'].invalid && f['uname']">
+      El nombre de usuario es requerido y debe tener al menos 4 caracteres.
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+
+  <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
+  <mat-form-field appearance="outline" class="w-100" color="primary">
+    <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña" />
+    <mat-error *ngIf="f['password'].invalid && f['password']">
+      La contraseña es requerida.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="form.invalid">
+    Iniciar sesión
+  </button>
+  <p class="error-message text-center" *ngIf="errorMessage">{{ errorMessage }}</p>
+</form>

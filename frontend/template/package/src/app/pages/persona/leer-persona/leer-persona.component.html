@@ -1,0 +1,136 @@
+<div class="page-container">
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Consultar Persona</h1>
+      <p class="welcome-subtitle">Interfaz para gestionar Persona</p>
+      <p class="welcome-subtitle">Esta interfaz permite crear, visualizar, actualizar, eliminar, buscar, filtrar y exportar los registros existentes.       Utilice las opciones de la tabla y los botones para gestionar la información.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-content>
+    <div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput #filterInput (keyup.enter)="applyFilter(filterInput.value)" placeholder="Buscar...">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="applyFilter(filterInput.value)">
+      <mat-icon>search</mat-icon> <span>Buscar </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="exportToExcel()">
+      <mat-icon>file_download</mat-icon> <span>Exportar a Excel </span>
+    </button>
+    <button mat-raised-button color="accent" (click)="onCreate()">
+      <mat-icon>add</mat-icon> <span>Crear Persona
+    </span></button>
+  </div>
+
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+      </ng-container>
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+        <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+      </ng-container>
+      <ng-container matColumnDef="numeroDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero Documento</th>
+        <td mat-cell *matCellDef="let element">{{element.numeroDocumento}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tituloProfesional">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Titulo Profesional</th>
+        <td mat-cell *matCellDef="let element">{{element.tituloProfesional}}</td>
+      </ng-container>
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</th>
+        <td mat-cell *matCellDef="let element">{{element.direccion}}</td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</th>
+        <td mat-cell *matCellDef="let element">{{element.telefono}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fechaExpedicion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Expedicion</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaExpedicion}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fechaNacimiento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Nacimiento</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaNacimiento}}</td>
+      </ng-container>
+      <ng-container matColumnDef="nacionalidad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nacionalidad</th>
+        <td mat-cell *matCellDef="let element">{{element.nacionalidad}}</td>
+      </ng-container>
+      <ng-container matColumnDef="documentosFormacionAcademica">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Documentos Formación Académica</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowDocumentosFormacionAcademica(element)" matTooltip="Ver Documentos Formacion Academica">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="documentosLegales">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Documentos Legales</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowDocumentosLegales(element)" matTooltip="Ver Documentos Legales">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="certificacionesLaborales">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Certificaciones Laborales</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="accent" style="display: inline-flex; align-items: center; gap: 6px;" (click)="onShowCertificacionesLaborales(element)" matTooltip="Ver Certificaciones Laborales">
+            <mat-icon>folder</mat-icon><strong>Archivos</strong>
+          </button></td>
+      </ng-container>
+      <ng-container matColumnDef="creador">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="proyecto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</th>
+        <td mat-cell *matCellDef="let element">{{generateSummary(element.proyecto) || 'Sin proyecto'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="contrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contrato</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.contrato)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Documento</th>
+        <td mat-cell *matCellDef="let element">{{getCollectionSummary(element.documento)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="tipoDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>TipoDocumento</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.tipoDocumento?.nombreTipoDocumento || 'Sin tipo documento'}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="accent" (click)="onDownload(element)" matTooltip="Descargar Archivos">
+            <mat-icon>file_download</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="onEdit(element)" matTooltip="Modificar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="table-footer">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+  </mat-card-content>
+</div>

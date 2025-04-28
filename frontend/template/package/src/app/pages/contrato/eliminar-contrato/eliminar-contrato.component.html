@@ -1,0 +1,115 @@
+<!-- Componente de eliminación de Contrato -->
+<div class="page-container">
+  <!-- Sección de título -->
+  <mat-card class="welcome-section">
+    <mat-card-content>
+      <h1 class="welcome-title">Eliminar Contrato</h1>
+      <p class="welcome-subtitle">Interfaz para eliminar registros de Contrato</p>
+      <p class="welcome-subtitle">Esta interfaz permite visualizar y eliminar registros existentes. Por favor, tenga en cuenta que esta acción es irreversible.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabla de registros -->
+  <mat-table [dataSource]="contratos" matSort>
+    <!-- Columna ID -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna estado -->
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.estado}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna rutaArchivo -->
+    <ng-container matColumnDef="rutaArchivo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>RutaArchivo</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.rutaArchivo}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna persona -->
+    <ng-container matColumnDef="persona">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Persona</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.persona}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna fechaInicioContrato -->
+    <ng-container matColumnDef="fechaInicioContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FechaInicioContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fechaInicioContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna proyecto -->
+    <ng-container matColumnDef="proyecto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.proyecto}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna numeroPagos -->
+    <ng-container matColumnDef="numeroPagos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>NumeroPagos</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.numeroPagos}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna valorTotalContrato -->
+    <ng-container matColumnDef="valorTotalContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ValorTotalContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.valorTotalContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna firmado -->
+    <ng-container matColumnDef="firmado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Firmado</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.firmado}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna creador -->
+    <ng-container matColumnDef="creador">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Creador</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.creador}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna fechaFinContrato -->
+    <ng-container matColumnDef="fechaFinContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>FechaFinContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.fechaFinContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna tipoContrato -->
+    <ng-container matColumnDef="tipoContrato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TipoContrato</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.tipoContrato}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna cargo -->
+    <ng-container matColumnDef="cargo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Cargo</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.cargo}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna periodicidadPago -->
+    <ng-container matColumnDef="periodicidadPago">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>PeriodicidadPago</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.periodicidadPago}}</mat-cell>
+    </ng-container>
+
+    <!-- Columna de acciones -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="warn" (click)="onDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Definición de filas -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+</div>
